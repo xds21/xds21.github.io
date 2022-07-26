@@ -251,6 +251,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/07/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="url">前端面试题基础篇（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-27T00:42:54+08:00">
+                2022-07-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="行内元素有哪些？块级元素有哪些？空（void）元素有哪些？"><a href="#行内元素有哪些？块级元素有哪些？空（void）元素有哪些？" class="headerlink" title="行内元素有哪些？块级元素有哪些？空（void）元素有哪些？"></a>行内元素有哪些？块级元素有哪些？空（void）元素有哪些？</h2><p><strong>行内元素：</strong>a、b、span、img、input、select、strong；</p>
+<p><strong>块级元素：</strong>div、ul、ol、l i、dl、dt、dd、h1、h2、h3、h4、h5、h6、p；</p>
+<p><strong>空元素：</strong>即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：</p>
+<ul>
+<li>常用：<code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</code></li>
+<li>不常用：<code>&lt;area&gt;、&lt;base&gt;、&lt;col&gt;、&lt;colgroup&gt;、&lt;command&gt;、&lt;embed&gt;、&lt;keygen&gt;、&lt;param&gt;、&lt;source&gt;、&lt;track&gt;、&lt;wbr&gt;</code></li>
+</ul>
+<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><p>块级元素：每个块级元素通常都会独占一行或者是多行，可以对其单独设置高度、宽度及对齐等属性。</p>
+<p>块级元素的特点：</p>
+<ol>
+<li>块级元素会独占一行</li>
+<li>高度，行高，外边距和内边距都可以设置</li>
+<li>可以容纳内联元素和其他块级元素</li>
+</ol>
+<h3 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h3><p>行内元素（内联元素）：不占有独立的区域，一个行内元素只占据它对应标签的边框所包含的空间。</p>
+<p>行内元素的特点：</p>
+<ol>
+<li>和相邻的行内元素在一行上</li>
+<li>高度和宽度无法设置，水平方向上的外边距和内边距可以设置</li>
+<li>行内元素只能容纳纯文本或者是其他的行内元素（a标签除外）</li>
+</ol>
+<h3 id="互相转换"><a href="#互相转换" class="headerlink" title="互相转换"></a>互相转换</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline；	把某元素转换成行内元素</span><br><span class="line">display:inline-block；	把某元素转换成行内块元素（可设置宽高）</span><br><span class="line">display:block；		把某元素转换成块级元素</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="页面导入样式时，使用link和-import有什么区别？"><a href="#页面导入样式时，使用link和-import有什么区别？" class="headerlink" title="页面导入样式时，使用link和@import有什么区别？"></a>页面导入样式时，使用link和@import有什么区别？</h1><p><strong>区别</strong></p>
+<ol>
+<li>页面被加载时，link会同时被加载，而@import引用的css会等页面被加载完再加载</li>
+<li>link的样式的权重高于@import的权重</li>
+<li>link属于XHTML标签，而@import是css提供的</li>
+<li>@import一般只在IE5以上才能识别，而link是XHTML标签，无兼容问题。</li>
+</ol>
+<h1 id="title与h1的区别、b与strong的区别、i与em的区别？"><a href="#title与h1的区别、b与strong的区别、i与em的区别？" class="headerlink" title="title与h1的区别、b与strong的区别、i与em的区别？"></a>title与h1的区别、b与strong的区别、i与em的区别？</h1><p><strong>title和h1的区别</strong></p>
+<ul>
+<li>title：网页标题标签，概括了网站信息，给搜索引擎看的，可以告诉搜索引擎或者用户这个网页的内容是什么</li>
+<li>h1：文本标签 给用户看的，网页内容的标题，是网页内容的一部分</li>
+</ul>
+<p><strong>b和strong的区别</strong></p>
+<ul>
+<li>b：实体标签，用来给文字加粗，没有实际的含义</li>
+<li>strong： 逻辑标签，用来加强字符语气的（盲人阅读器中），用以强调的</li>
+</ul>
+<p><strong>i和em的区别</strong></p>
+<ul>
+<li>i：实体标签，文字倾斜，没有实际含义</li>
+<li>em：逻辑标签，表示标签内字符很重要</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/20/Typora%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -786,7 +952,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -808,7 +974,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
