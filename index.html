@@ -251,6 +251,620 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/31/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/07/31/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/" itemprop="url">前端面试题基础篇（五）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-31T14:00:14+08:00">
+                2022-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="JS作用域-this指向-原型"><a href="#JS作用域-this指向-原型" class="headerlink" title="JS作用域+this指向+原型"></a>JS作用域+this指向+原型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Foo</span>(<span class="params"></span>)&#123;</span><br><span class="line">  getName = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)&#125;<span class="comment">//注意是全局的window</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>;<span class="comment">//这里是this的默认绑定，返回值为window</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//给Foo定义getName方法</span></span><br><span class="line"><span class="title class_">Foo</span>.<span class="property">getName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)&#125;</span><br><span class="line"><span class="comment">//给Foo的原型添加getName方法</span></span><br><span class="line"><span class="title class_">Foo</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)&#125;</span><br><span class="line"><span class="comment">//定义全局getName方法，注意变量提升</span></span><br><span class="line"><span class="keyword">var</span> getName = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>)&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Foo</span>.<span class="title function_">getName</span>();<span class="comment">//2</span></span><br><span class="line"><span class="title function_">getName</span>();<span class="comment">//4</span></span><br><span class="line"><span class="title class_">Foo</span>().<span class="title function_">getName</span>();<span class="comment">//1</span></span><br><span class="line"><span class="title function_">getName</span>();<span class="comment">//1 此时全局的getName（）已经被修改为Foo内的那个函数</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Foo</span>().<span class="title function_">getName</span>();<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/" itemprop="url">前端面试题基础篇（四）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T23:48:41+08:00">
+                2022-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="延迟加载JS有哪些方式？"><a href="#延迟加载JS有哪些方式？" class="headerlink" title="延迟加载JS有哪些方式？"></a>延迟加载JS有哪些方式？</h3><p><strong>延迟加载：</strong>async、defer</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&#x27;script.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>defer：等html全部解析完，才会执行js代码，顺次执行js脚本。</p>
+<p>async：async和html解析同步的（一起的），不是顺次执行js脚本（谁先加载完谁先执行）</p>
+<h3 id="JS数据类型有哪些？"><a href="#JS数据类型有哪些？" class="headerlink" title="JS数据类型有哪些？"></a>JS数据类型有哪些？</h3><p><strong>基本类型：</strong>String、Number、Boolean、Undefined、Null、Symbol、Bigint</p>
+<p><strong>引用类型：</strong>Object</p>
+<h3 id="null和undefined的区别"><a href="#null和undefined的区别" class="headerlink" title="null和undefined的区别"></a>null和undefined的区别</h3><ol>
+<li>作者在设计js的时候先设计的null</li>
+<li>null会被隐式转换成为0，很不容易发现错误</li>
+<li>undefined是为了填补之前的坑</li>
+</ol>
+<p>具体区别：null是表示‘无’的对象（空指针对象），转为数值时为0，undefined是一个表示‘无’的原始值，转为数值时为NaN</p>
+<h3 id="x3D-x3D-和-x3D-x3D-x3D-区别"><a href="#x3D-x3D-和-x3D-x3D-x3D-区别" class="headerlink" title="&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;区别"></a>&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;区别</h3><ol>
+<li>对于string、number等基础类型，&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;是有区别的<ol>
+<li>不同类型间比较，&#x3D;&#x3D;之比较“转化成同一类型后的值”看“值”是否相等，&#x3D;&#x3D;&#x3D;如果类型不同，其结果就是不等。</li>
+<li>同类型比较，直接进行“值”比较，两者结果一样。</li>
+</ol>
+</li>
+<li>对于Array，Object等高级类型，&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;是没有区别的</li>
+<li>基础类型与高级类型，&#x3D;&#x3D;与&#x3D;&#x3D;&#x3D;是有区别的<ol>
+<li>对于&#x3D;&#x3D;，将高级转换为基础类型，进行“值”比较</li>
+<li>因为类型不同，&#x3D;&#x3D;&#x3D;结果为false</li>
+</ol>
+</li>
+<li>！&#x3D;为&#x3D;&#x3D;的非运算，！&#x3D;&#x3D;为&#x3D;&#x3D;&#x3D;的非运算</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;1&quot;</span></span><br><span class="line"><span class="keyword">let</span> test = <span class="number">1</span></span><br><span class="line">test == num  <span class="comment">//true 相同类型 相同值</span></span><br><span class="line">test === num <span class="comment">//true 相同类型 相同值</span></span><br><span class="line">test !== num <span class="comment">//false test与num类型相同，其值也相同，非运算结果为false</span></span><br><span class="line">num == str <span class="comment">//true 把str转换为数字，检查其是否相等</span></span><br><span class="line">num != str <span class="comment">//false == 的 非运算</span></span><br><span class="line">num === str <span class="comment">//false 类型不同，直接返回false</span></span><br><span class="line">num !== str <span class="comment">//true num与str类型不同 意味着其两者不等 非运算自然是true </span></span><br></pre></td></tr></table></figure>
+
+<h4 id="JS微任务和宏任务"><a href="#JS微任务和宏任务" class="headerlink" title="JS微任务和宏任务"></a>JS微任务和宏任务</h4><ol>
+<li><p>js是单线程的语言。</p>
+</li>
+<li><p>js代码执行流程：同步执行完 –&gt;事件循环</p>
+<p>同步的任务都执行完了，才会执行事件循环的内容</p>
+<p>进入事件循环：请求、定时器、事件。。。 </p>
+</li>
+<li><p>事件循环中包含：【微任务、宏任务】</p>
+</li>
+</ol>
+<p>微任务：promise.then</p>
+<p>宏任务：setTimeout..</p>
+<p>要执行宏任务的前提是清空了所有的微任务</p>
+<p>流程：同步–&gt;事件循环【微任务、宏任务】–&gt;微任务–&gt;宏任务–&gt;微任务…</p>
+<h3 id="JS作用域"><a href="#JS作用域" class="headerlink" title="JS作用域"></a>JS作用域</h3><ol>
+<li>除了函数外，js是没有块级作用域的</li>
+<li>作用域链：内部可以访问外部的变量，但是外部不能访问内部的变量</li>
+</ol>
+<p>​		注意：如果内部有，有限查找到内部，如果内部没有就查找外部的</p>
+<ol start="3">
+<li>注意声明变量是用var还是没有写（window.）</li>
+<li>注意：js有变量提升的机制</li>
+<li>优先级：声明变量 &gt; 声明普通变量 &gt; 参数 &gt; 变量提升</li>
+</ol>
+<h3 id="JS对象考题"><a href="#JS对象考题" class="headerlink" title="JS对象考题"></a>JS对象考题</h3><p><strong>注意点：</strong></p>
+<ol>
+<li><p>对象是通过new操作符构建出来的，所以对象之间不相等（除了引用外）</p>
+</li>
+<li><p>对象注意：引用类型（共同一个地址）</p>
+</li>
+<li><p>对象的key都是字符串类型</p>
+</li>
+<li><p>对象如何招属性｜方法：</p>
+<p>查找规则：先在对象本身找 &#x3D;&#x3D;&#x3D;&gt; 构造函数中找 &#x3D;&#x3D;&#x3D;&gt; 对象原型中找 &#x3D;&#x3D;&#x3D;&gt; 构造函数原型中找 &#x3D;&#x3D;&#x3D;&gt; 对象上一层原型查找</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]===[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">//false   [1,2,3]相当于new Array(1,2,3)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="string">&#x27;hellow&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1</span><br><span class="line">obj2.<span class="property">a</span> = <span class="string">&#x27;world&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">//&#123;a:world&#125;</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">//undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> b = &#123;<span class="attr">key</span>:<span class="string">&#x27;a&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">var</span> c = &#123;<span class="attr">key</span>:<span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="comment">//b要作为属性名先转为字符串，相当于： a[object Object]：=&#x27;123&#x27;</span></span><br><span class="line">a[b]=<span class="string">&#x27;123&#x27;</span></span><br><span class="line"><span class="comment">//打印一下a 此时a只有一个属性名为object Object，属性为123的键值对</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)<span class="comment">//&#123;[object Object]:&#x27;123&#x27;&#125;</span></span><br><span class="line"><span class="comment">// 同上 c要作为属性名先转为字符串，相当于a[object Object]:=&#x27;456&#x27;</span></span><br><span class="line">a[c]=<span class="string">&#x27;456&#x27;</span></span><br><span class="line"><span class="comment">//再打印一下a，此时还是只有一个属性名为object Object，属性值为456的键值对</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)<span class="comment">//&#123;[object Object]:&#x27;456&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的a[c]=&#x27;456&#x27;只是在给a[object Object]重新赋值而已</span></span><br><span class="line"><span class="comment">//打印a[b]其实就是在打印a[object Object]由于最后一次赋值为456</span></span><br><span class="line"><span class="comment">//故：</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a[b])<span class="comment">//456</span></span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/" itemprop="url">前端面试题基础篇（三）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T01:54:30+08:00">
+                2022-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="消除浮动有哪些方法？"><a href="#消除浮动有哪些方法？" class="headerlink" title="消除浮动有哪些方法？"></a>消除浮动有哪些方法？</h3><ol>
+<li>触发BFC</li>
+<li>多创建一个盒子，添加样式：clear：both</li>
+<li>after方法</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ul:after&#123;</span><br><span class="line">	content:&#x27;&#x27;;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="position有哪些值？分别是根据什么定位的？"><a href="#position有哪些值？分别是根据什么定位的？" class="headerlink" title="position有哪些值？分别是根据什么定位的？"></a>position有哪些值？分别是根据什么定位的？</h4><p><strong>static</strong>（默认） 没有定位</p>
+<p><strong>fixed</strong>  固定定位，相对于浏览器窗口进行定位</p>
+<p><strong>relative</strong>  相对于自身定位，不脱离文档流</p>
+<p><strong>absolute</strong>  相对于第一个有relative的父元素，脱离文档流</p>
+<p>relative和absolute区别：</p>
+<ol>
+<li>relative不脱离文档流、absolute脱离文档流</li>
+<li>relative相对于自身、absolute相对于第一个有relative的父元素</li>
+<li>relative有left、top值</li>
+<li>absolute有left、right、top、bottom值</li>
+</ol>
+<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么 有什么优缺点？"></a>css sprite是什么 有什么优缺点？</h3><p><strong>sprite：</strong>将一个页面涉及到的所有零星图片都包含到一张大图中去。</p>
+<p><strong>优点：</strong>减少了http请求的次数，提高了性能。</p>
+<p><strong>缺点：</strong>维护比较差（例如图片位置进行修改或者内容宽高修改）</p>
+<h3 id="display-none-和visibility-hidden的区别？"><a href="#display-none-和visibility-hidden的区别？" class="headerlink" title="display:none 和visibility:hidden的区别？"></a>display:none 和visibility:hidden的区别？</h3><p><strong>1.作用不同：</strong></p>
+<p>​	visibility:hidden 将元素隐藏，但是仍占用位置</p>
+<p>​	display:none 不占用位置 </p>
+<p><strong>2.重绘和回流的问题：</strong></p>
+<p>​	visibility:hidden 产生重绘</p>
+<p>​	display:none  产生重绘和回流</p>
+<p>​	产生回流一定会造成重绘，但是重绘不一定会造成回流。</p>
+<p>产生回流的情况：改变元素的位置（left、top…）、显示隐藏元素…</p>
+<p>产生重绘的情况：样式改变（background、color …)</p>
+<h3 id="opacity和rgba区别"><a href="#opacity和rgba区别" class="headerlink" title="opacity和rgba区别"></a>opacity和rgba区别</h3><p><strong>共同性：</strong></p>
+<ol>
+<li>opacity 取值范围0到1之间，0表示完全透明，1表示不透明</li>
+<li>rgba R表示红色，G表示绿色，B表示蓝色，取值可以在正整数或者百分数。A表示透明度取值0到1之间</li>
+</ol>
+<p><strong>区别：</strong></p>
+<p>​	opacity会继承父元素的opacity属性，而RGBA设置的元素的后代元素不会继承不透明属性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/" itemprop="url">前端面试题基础篇（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T01:05:01+08:00">
+                2022-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="介绍CSS的盒子模型"><a href="#介绍CSS的盒子模型" class="headerlink" title="介绍CSS的盒子模型"></a>介绍CSS的盒子模型</h3><p>CSS的盒子模型有哪些：标准盒子模型，怪异盒子模型</p>
+<p>区别：</p>
+<p>​	标准盒子模型：margin、border、padding、content</p>
+<p>​	怪异盒子模型：margin、context（ border + padding + content ）</p>
+<p>转换：</p>
+<p>​	box-sizing：content-box；&#x2F;&#x2F;标准盒子模型</p>
+<p>​	box-sizing：border-box；&#x2F;&#x2F;怪异盒子模型</p>
+<h3 id="用CSS画一个三角形"><a href="#用CSS画一个三角形" class="headerlink" title="用CSS画一个三角形"></a>用CSS画一个三角形</h3><p>用边框（border）画，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;top&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;bottom&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.top</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-bottom</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.bottom</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-top</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-left</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-right</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="一个盒子不给宽度和高度如何水平垂直居中？"><a href="#一个盒子不给宽度和高度如何水平垂直居中？" class="headerlink" title="一个盒子不给宽度和高度如何水平垂直居中？"></a>一个盒子不给宽度和高度如何水平垂直居中？</h3><p><strong>方法一</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="对BFC规范（块级格式化上下文：block-formatting-context）的理解？"><a href="#对BFC规范（块级格式化上下文：block-formatting-context）的理解？" class="headerlink" title="对BFC规范（块级格式化上下文：block formatting context）的理解？"></a>对BFC规范（块级格式化上下文：block formatting context）的理解？</h3><p>BFC就是页面上一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。</p>
+<ol>
+<li>了解BFC：块级格式化上下文。</li>
+<li>BFC的原则：如果一个元素具有BFC，那么内部元素不管怎么样都不会影响到外面的元素。</li>
+<li>如何触发BFC：<ol>
+<li>float的值非none</li>
+<li>overfloat的值非visible</li>
+<li>display的值为：inline-block、table-cell . . .</li>
+<li>position的值为absolute、fixed</li>
+</ol>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -952,7 +1566,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -974,7 +1588,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

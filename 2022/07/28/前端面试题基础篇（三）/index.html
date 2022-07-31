@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="分享,导航," />
+  <meta name="keywords" content="--HTML面试题 --CSS --学习笔记 --分享," />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="testthis is a test">
+<meta name="description" content="消除浮动有哪些方法？ 触发BFC 多创建一个盒子，添加样式：clear：both after方法  12345ul:after&amp;#123;	content:&amp;#x27;&amp;#x27;;	display:block;	clear:both;&amp;#125;  position有哪些值？分别是根据什么定位的？static（默认） 没有定位 fixed  固定定位，相对于浏览器窗口进行定位 relative">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2022/07/20/test/index.html">
+<meta property="og:title" content="前端面试题基础篇（三）">
+<meta property="og:url" content="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/index.html">
 <meta property="og:site_name" content="Jerry">
-<meta property="og:description" content="testthis is a test">
+<meta property="og:description" content="消除浮动有哪些方法？ 触发BFC 多创建一个盒子，添加样式：clear：both after方法  12345ul:after&amp;#123;	content:&amp;#x27;&amp;#x27;;	display:block;	clear:both;&amp;#125;  position有哪些值？分别是根据什么定位的？static（默认） 没有定位 fixed  固定定位，相对于浏览器窗口进行定位 relative">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-07-20T07:55:34.000Z">
-<meta property="article:modified_time" content="2022-07-20T09:17:30.895Z">
+<meta property="article:published_time" content="2022-07-27T17:54:30.000Z">
+<meta property="article:modified_time" content="2022-07-28T15:48:00.508Z">
 <meta property="article:author" content="Jerry">
-<meta property="article:tag" content="分享">
-<meta property="article:tag" content="导航">
+<meta property="article:tag" content="--HTML面试题 --CSS --学习笔记 --分享">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://example.com/2022/07/20/test/"/>
+  <link rel="canonical" href="http://example.com/2022/07/28/前端面试题基础篇（三）/"/>
 
 
 
 
 
-  <title>test | Jerry</title>
+  <title>前端面试题基础篇（三） | Jerry</title>
   
 
 
@@ -254,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/20/test/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -271,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test</h1>
+          <h1 class="post-title" itemprop="name headline">前端面试题基础篇（三）</h1>
         
 
         <div class="post-meta">
@@ -283,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-20T15:55:34+08:00">
-                2022-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T01:54:30+08:00">
+                2022-07-28
               </time>
             
 
@@ -293,28 +292,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -343,7 +320,43 @@
       
 
       
-        <h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>this is a test</p>
+        <h3 id="消除浮动有哪些方法？"><a href="#消除浮动有哪些方法？" class="headerlink" title="消除浮动有哪些方法？"></a>消除浮动有哪些方法？</h3><ol>
+<li>触发BFC</li>
+<li>多创建一个盒子，添加样式：clear：both</li>
+<li>after方法</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ul:after&#123;</span><br><span class="line">	content:&#x27;&#x27;;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="position有哪些值？分别是根据什么定位的？"><a href="#position有哪些值？分别是根据什么定位的？" class="headerlink" title="position有哪些值？分别是根据什么定位的？"></a>position有哪些值？分别是根据什么定位的？</h4><p><strong>static</strong>（默认） 没有定位</p>
+<p><strong>fixed</strong>  固定定位，相对于浏览器窗口进行定位</p>
+<p><strong>relative</strong>  相对于自身定位，不脱离文档流</p>
+<p><strong>absolute</strong>  相对于第一个有relative的父元素，脱离文档流</p>
+<p>relative和absolute区别：</p>
+<ol>
+<li>relative不脱离文档流、absolute脱离文档流</li>
+<li>relative相对于自身、absolute相对于第一个有relative的父元素</li>
+<li>relative有left、top值</li>
+<li>absolute有left、right、top、bottom值</li>
+</ol>
+<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么 有什么优缺点？"></a>css sprite是什么 有什么优缺点？</h3><p><strong>sprite：</strong>将一个页面涉及到的所有零星图片都包含到一张大图中去。</p>
+<p><strong>优点：</strong>减少了http请求的次数，提高了性能。</p>
+<p><strong>缺点：</strong>维护比较差（例如图片位置进行修改或者内容宽高修改）</p>
+<h3 id="display-none-和visibility-hidden的区别？"><a href="#display-none-和visibility-hidden的区别？" class="headerlink" title="display:none 和visibility:hidden的区别？"></a>display:none 和visibility:hidden的区别？</h3><p><strong>1.作用不同：</strong></p>
+<p>​	visibility:hidden 将元素隐藏，但是仍占用位置</p>
+<p>​	display:none 不占用位置 </p>
+<p><strong>2.重绘和回流的问题：</strong></p>
+<p>​	visibility:hidden 产生重绘</p>
+<p>​	display:none  产生重绘和回流</p>
+<p>​	产生回流一定会造成重绘，但是重绘不一定会造成回流。</p>
+<p>产生回流的情况：改变元素的位置（left、top…）、显示隐藏元素…</p>
+<p>产生重绘的情况：样式改变（background、color …)</p>
+<h3 id="opacity和rgba区别"><a href="#opacity和rgba区别" class="headerlink" title="opacity和rgba区别"></a>opacity和rgba区别</h3><p><strong>共同性：</strong></p>
+<ol>
+<li>opacity 取值范围0到1之间，0表示完全透明，1表示不透明</li>
+<li>rgba R表示红色，G表示绿色，B表示蓝色，取值可以在正整数或者百分数。A表示透明度取值0到1之间</li>
+</ol>
+<p><strong>区别：</strong></p>
+<p>​	opacity会继承父元素的opacity属性，而RGBA设置的元素的后代元素不会继承不透明属性。</p>
 
       
     </div>
@@ -361,9 +374,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"># 分享</a>
-          
-            <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"># 导航</a>
+            <a href="/tags/HTML%E9%9D%A2%E8%AF%95%E9%A2%98-CSS-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%88%86%E4%BA%AB/" rel="tag"># --HTML面试题 --CSS --学习笔记 --分享</a>
           
         </div>
       
@@ -376,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2022/07/18/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/" rel="next" title="前端面试题基础篇（二）">
+                <i class="fa fa-chevron-left"></i> 前端面试题基础篇（二）
               </a>
             
           </div>
@@ -386,8 +397,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/07/20/Typora%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" rel="prev" title="Typora使用教程">
-                Typora使用教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/" rel="prev" title="前端面试题基础篇（四）">
+                前端面试题基础篇（四） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -534,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#test"><span class="nav-number">1.</span> <span class="nav-text">test</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E9%99%A4%E6%B5%AE%E5%8A%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">消除浮动有哪些方法？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#position%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC%EF%BC%9F%E5%88%86%E5%88%AB%E6%98%AF%E6%A0%B9%E6%8D%AE%E4%BB%80%E4%B9%88%E5%AE%9A%E4%BD%8D%E7%9A%84%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">position有哪些值？分别是根据什么定位的？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css-sprite%E6%98%AF%E4%BB%80%E4%B9%88-%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">css sprite是什么 有什么优缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#display-none-%E5%92%8Cvisibility-hidden%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">display:none 和visibility:hidden的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#opacity%E5%92%8Crgba%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">opacity和rgba区别</span></a></li></ol></div>
             
 
           </div>
