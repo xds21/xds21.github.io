@@ -87,7 +87,7 @@
 <meta property="og:description" content="深拷贝和浅拷贝共同点：复制  浅拷贝：只复制引用，而未复制真正的值。  12345var arr1 &#x3D; [&amp;#x27;a&amp;#x27;,&amp;#x27;b&amp;#x27;,&amp;#x27;c&amp;#x27;,&amp;#x27;d&amp;#x27;];var arr2 &#x3D; arr1;var obj1 &#x3D;&amp;#123;a:2,b:2&amp;#125;var ovj2 &#x3D; Object.assign(obj1);   深拷贝：是复制真正的值">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-08-03T16:48:59.000Z">
-<meta property="article:modified_time" content="2022-08-03T17:04:36.098Z">
+<meta property="article:modified_time" content="2022-08-03T17:10:58.537Z">
 <meta property="article:author" content="Jerry">
 <meta property="article:tag" content="分享">
 <meta property="article:tag" content="学习笔记">
@@ -334,6 +334,15 @@
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj4 = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj3))</span><br><span class="line"><span class="comment">//递归的形式</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">copyObj</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>( <span class="title class_">Array</span>.<span class="title function_">isArray</span>(obj))&#123;</span><br><span class="line">    <span class="keyword">var</span> newObj = [];</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> newObj = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">var</span> key <span class="keyword">in</span> obj )&#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="keyword">typeof</span> obj[key] == <span class="string">&#x27;object&#x27;</span>)&#123;</span><br><span class="line">      newObj[key] = <span class="title function_">copyObj</span>(obj[key]);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      newObj[key] = obj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">copyObj</span>(obj5) )</span><br></pre></td></tr></table></figure>
 
+<p><strong>拷贝一些方法：</strong></p>
+<ol>
+<li>Object.saaign() 浅拷贝</li>
+<li>Array.prototype.slice() 深拷贝</li>
+<li>Array.prototype.concat() 深拷贝</li>
+<li>JSON.parse(JSON.stringify()) 深拷贝</li>
+<li>Loadsh库中的API，如.clone()、.cloneDeep()</li>
+<li>拓展运算符 …arr 深拷贝</li>
+</ol>
 <h3 id="localStorage、sessionStorage、cookoe有什么区别"><a href="#localStorage、sessionStorage、cookoe有什么区别" class="headerlink" title="localStorage、sessionStorage、cookoe有什么区别"></a>localStorage、sessionStorage、cookoe有什么区别</h3><p><strong>共同点：</strong>在客户端存放数据</p>
 <p><strong>区别：</strong></p>
 <ol>
@@ -397,6 +406,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/08/05/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/" rel="prev" title="前端面试题进阶篇（一）">
+                前端面试题进阶篇（一） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -477,7 +490,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -499,7 +512,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

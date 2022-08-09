@@ -251,6 +251,1349 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%8D%81%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%8D%81%EF%BC%89/" itemprop="url">前端面试题基础篇（十）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-09T16:37:17+08:00">
+                2022-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="项目性能优化"><a href="#项目性能优化" class="headerlink" title="项目性能优化"></a>项目性能优化</h3><ul>
+<li>减少 HTTP 请求数</li>
+<li>减少DNS查询</li>
+<li>使用CDN</li>
+<li>避免重定向</li>
+<li>图片懒加载</li>
+<li>减少 DOM 元素数量</li>
+<li>减少 DOM 操作</li>
+<li>使用外部 JavaScript 和 CSS</li>
+<li>压缩 JavaScript、CSS、字体、图片等</li>
+<li>优化 CSS Sprite</li>
+<li>使用 iconfont</li>
+<li>多域名分发划分内容到不同域名</li>
+<li>尽量减少 iframe 使用</li>
+<li>避免图片 src 为空</li>
+<li>把样式表放在 link 中</li>
+<li>把 JavaScript 放在页面底部</li>
+</ul>
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><ul>
+<li>单台服务器共同协作，不然其中某一台或几台超额工作，发挥服务器的最大作用</li>
+<li>http 重定向负载均衡：调度者根据策略选择服务器以 302 响应请求，缺点只有一次有效果，后续操作维持在该服务器</li>
+<li>dns 负载均衡：解析域名时，访问多个 ip 服务器中的一个（可监控性较弱）原因-避免 DOM 渲染的冲突</li>
+<li>反向代理负载均衡：访问统一的服务器，由服务器进行调度访问实际的某一个服务器，对统一的服务器要求到，性能受到 服务器群的数量</li>
+</ul>
+<h3 id="什么是原型、原型链、继承？"><a href="#什么是原型、原型链、继承？" class="headerlink" title="什么是原型、原型链、继承？"></a>什么是原型、原型链、继承？</h3><ul>
+<li>所有的函数都有prototype属性（原型）</li>
+<li>所有的对象都有<code>_proto_</code>属性</li>
+<li>在JavaScript中，每个函数都有一个原型属性prototype指向自身的原型，而由这个函数创建的对象也有一个proto属性指向这个原型，而函数的原型是一个对象，所以这个对象也会有一个proto指向自己的原型，这样逐层深入直到Object对象的原型，这样就形成了原型链。</li>
+</ul>
+<h3 id="JS垃圾回收机制是怎样的？"><a href="#JS垃圾回收机制是怎样的？" class="headerlink" title="JS垃圾回收机制是怎样的？"></a>JS垃圾回收机制是怎样的？</h3><ol>
+<li><p>简述</p>
+<p>js的垃圾回收机制是为了防止内存泄漏（已经不需要的某一块内存还一直存在着），垃圾回收机制就是不停歇的寻找这些不再使用的变量，并且释放掉它说指向的内存。在js中，js的执行环境会负责管理代码执行过程中使用的内存。</p>
+</li>
+<li><p>变量的生命周期</p>
+<p>当一个变量的生命周期结束之后，它所指向的内存就会被释放。js有两种变量，局部变量和全局变量，局部变量是在他当前的函数中产生作用，当该函数结束之后，该变量内存会被释放，全局变量的话会一直存在，直到浏览器关闭为止</p>
+</li>
+<li><p>js垃圾回收方式</p>
+<p>有两种方式：标记清除、引用计数</p>
+<p>标记清除：大部分浏览器使用这种垃圾回收，当变量进入执行环境（声明变量）的时候，垃圾回收器将该变量进行了标记，当该变量离开环境的时候，将再度标记，随之进行删除。</p>
+<p>引用计数：这种方式常常会引起内存的泄露，主要存在于低版本的浏览器。它的机制就是跟踪某一个值的引用次数，当声明一个变量并且将一个引用类型赋值给变量的时候引用次数➕1，当这个变量指向其他一个时引用次数➖1，当为0时触发回收机制进行回收。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B9%9D%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/09/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B9%9D%EF%BC%89/" itemprop="url">前端面试题基础篇（九）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-09T15:49:08+08:00">
+                2022-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p><strong>定义：</strong>程序中已动态分配的堆内存由于某种原因程序未释放或无法释放引发的各种问题。</p>
+<p>js中可能出现的内存泄漏问题：结果：变慢，崩溃，延迟大等</p>
+<p>js中可能出现的内存泄漏原因：</p>
+<ul>
+<li>全局变量</li>
+<li>dom 清空时，还存在引用</li>
+<li>定时器未清除</li>
+<li>子元素存在引用的内存泄漏</li>
+</ul>
+<h3 id="数组（array）方法"><a href="#数组（array）方法" class="headerlink" title="数组（array）方法"></a>数组（array）方法</h3><ul>
+<li>map：遍历数组，返回回调返回值组成新数组</li>
+<li>forEach： 无法break，可以用 try&#x2F;catch 中 throw new Error 来停止</li>
+<li>filter： 过滤</li>
+<li>some： 有一项返回 true ，则整体为true</li>
+<li>every： 有一项返回false，则整体为false</li>
+<li>join： 通过制定连接符生成字符串</li>
+<li>push &#x2F; pop： 末尾推入或弹出，改变原数组，返回推入&#x2F;弹出项</li>
+<li>unshift &#x2F; shift： 头部推入和弹出，改变原数组，返回操作项</li>
+<li>sort（fn）&#x2F; reverse： 排序与反转，改变原数组</li>
+<li>concat： 连接数组，不影响原数组，浅拷贝</li>
+<li>slice（start，end）： 返回截断后的新数组，不改变原数组</li>
+<li>splice（start，number，value…）： 返回删除元素组成的数组，value为插入项，改变原数组</li>
+<li>indexOf &#x2F;  lastIndexOf（value，formIndex）： 查找数组项，返回对应的下标</li>
+<li>reduce &#x2F; reduceRight（fn（prev，cur），defaultPrev）： 两两执行，prev为上次简化函数的return值，cur为当前值（从第二项开始）</li>
+</ul>
+<h3 id="说说异步编程的实现方式？"><a href="#说说异步编程的实现方式？" class="headerlink" title="说说异步编程的实现方式？"></a>说说异步编程的实现方式？</h3><ul>
+<li>回调函数<ul>
+<li>优点：简单、容易理解</li>
+<li>缺点：不利于维护、代码耦合高</li>
+</ul>
+</li>
+<li>事件监听：<ul>
+<li>优点：容易理解，可以绑定多个时间，每个事件可以指定多个回调函数</li>
+<li>缺点：事件驱动型，流程不够清晰</li>
+</ul>
+</li>
+<li>发布&#x2F;订阅（观察者模式）<ul>
+<li>类似于事件监听，但是可以通过‘信息中心’，了解现在有多少发布者，多少订阅者</li>
+</ul>
+</li>
+<li>Promise 对象<ul>
+<li>优点：可以利用 then 方法，进行链式写法；可以书写错误时的回调函数</li>
+<li>缺点：编写和理解，相对比较难</li>
+</ul>
+</li>
+<li>Generator 函数<ul>
+<li>优点：函数体内外的函数交换、错误处理机制</li>
+<li>缺点：流程管理不方便</li>
+</ul>
+</li>
+<li>async 函数<ul>
+<li>优点：内置执行器、更好的语义、更广的适用性、返回的是Promise、结构清晰</li>
+<li>缺点：错误处理机制</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/08/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%85%AB%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/08/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%85%AB%EF%BC%89/" itemprop="url">前端面试题基础篇（八）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-08T21:53:09+08:00">
+                2022-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="js数组和对象的遍历方式"><a href="#js数组和对象的遍历方式" class="headerlink" title="js数组和对象的遍历方式"></a>js数组和对象的遍历方式</h3><ol>
+<li><strong>js遍历数组</strong><ul>
+<li><strong>for循环</strong>	</li>
+<li><strong>for… in</strong>    遍历（当前对象及其原型上的）每一个key 。以任意顺序遍历对象的可枚举属性，（最好不要用来遍历数组）因此当迭代哪些访问次序重要的arrays是用整数索引去进行for循环（或者使用Array.prototype.forEach()或for…of循环）</li>
+<li><strong>for…of</strong>    遍历（当前对象及其原型上的）每一个value。（ES6）允许你遍历Arrays（数组），String（字符串），Maps（映射），Sets（集合）等可迭代的数据结构等。不能遍历普通对象</li>
+<li><strong>forEach</strong>    在遍历过程中不能被终止，必须每一个值遍历一遍后才能停下来</li>
+<li><strong>map</strong></li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="string">&#x27;J&#x27;</span>,<span class="string">&#x27;e&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;y&#x27;</span>];</span><br><span class="line"><span class="comment">//for循环</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ; i &lt; arr.<span class="property">length</span>; i++)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(arr[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//for...in</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> arr)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(arr[key]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//for...of</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> value <span class="keyword">of</span> arr)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//forEach</span></span><br><span class="line">arr.<span class="title function_">forEach</span>(<span class="params"><span class="keyword">function</span> (k)</span>)&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(k);            </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//map</span></span><br><span class="line"><span class="keyword">let</span> res = arr.<span class="title function_">map</span>(<span class="keyword">function</span>(<span class="params">item</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> item;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>js遍历对象</strong><ul>
+<li><strong>for…in</strong></li>
+<li><strong>Object.keys</strong>    「注意」for…of不能单独来遍历对象，要结合Object.keys一起使用才行。 Object.key()方法会返回一个由一个指定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用for…in循环遍历改对象时返回的顺序一致。</li>
+<li><strong>Object.getOwnPropertyNames(obj)</strong>    返回一个数组，包含对象本身的所有属性（包括不可枚举属性）遍历可以获取key和value</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>:<span class="string">&#x27;Jerry&#x27;</span>,</span><br><span class="line">  <span class="attr">age</span>:<span class="string">&#x27;3&#x27;</span>,</span><br><span class="line">  <span class="attr">address</span>:<span class="string">&#x27;Unknown&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//for...in</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key+<span class="string">&#x27;:&#x27;</span>+obj[key]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Object.keys</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">of</span> <span class="title class_">Object</span>.<span class="title function_">keys</span>(obj))&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key+<span class="string">&#x27;:&#x27;</span>+obj[key]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Object.getOwnPropertyNames(obj)</span></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">getOwnPropertyNames</span>(obj).<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">key</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(key+<span class="string">&#x27;:&#x27;</span>+obj[key])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="map和forEach的区别"><a href="#map和forEach的区别" class="headerlink" title="map和forEach的区别"></a>map和forEach的区别</h3><ul>
+<li>forEach 方法，是最基本的方法，就是遍历和循环，默认有3个参数：分别是遍历的数组内容item、数组索引index，和当前遍历数组 Array</li>
+<li>map方法，基本用法与forEach一致，但是不同的，它会返回一个新的数组，所以callback需要有 return 值，如果没有会返回 undefined</li>
+</ul>
+<h3 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h3><p><strong>同源策略：</strong>同源指的是域名、协议、端口号相同</p>
+<p><strong>如何解决跨域</strong></p>
+<ul>
+<li>jsobp跨域</li>
+<li>document.domain + iframe 跨域</li>
+<li>nodejs中间件代理跨域</li>
+<li>后端在头部信息里设置安全域名</li>
+</ul>
+<h3 id="attribute和property的区别是什么"><a href="#attribute和property的区别是什么" class="headerlink" title="attribute和property的区别是什么"></a>attribute和property的区别是什么</h3><ul>
+<li>attribute 是 dom 元素在文档中作为 html 标签拥有的属性</li>
+<li>property 就是 dom 元素在 js 中作为对象拥有的属性</li>
+<li>对于 html 的标准属性来说，attribute 和 propwety 是相同的，是会同步更新的</li>
+<li>当对于自定义的属性来说，他们是不同步的</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/07/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/07/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/" itemprop="url">前端面试题进阶篇（五）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-07T22:49:45+08:00">
+                2022-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Vue路由模式"><a href="#Vue路由模式" class="headerlink" title="Vue路由模式"></a>Vue路由模式</h3><p>路由模式有两种：history和hash</p>
+<p>区别：</p>
+<ol>
+<li>表现形态不同<ul>
+<li>history：<a target="_blank" rel="noopener" href="http://localhost:8080/about">http://localhost:8080/about</a></li>
+<li>hash:<a target="_blank" rel="noopener" href="http://localhost:8080/#/about">http://localhost:8080/#/about</a></li>
+</ul>
+</li>
+<li>跳转请求<ul>
+<li>history：<a target="_blank" rel="noopener" href="http://localhost:8080/id">http://localhost:8080/id</a>  发送请求</li>
+<li>hash：不会发送请求</li>
+</ul>
+</li>
+<li>打包后前端自测要用hash，如果使用history会出现空白页</li>
+</ol>
+<h3 id="什么是SPA以及SPA有什么缺点？"><a href="#什么是SPA以及SPA有什么缺点？" class="headerlink" title="什么是SPA以及SPA有什么缺点？"></a>什么是SPA以及SPA有什么缺点？</h3><p>spa是什么？ 单页面应用</p>
+<p>缺点：</p>
+<ol>
+<li>SEO优化不好</li>
+<li>性能不是特别好</li>
+</ol>
+<h3 id="Vue路径传值"><a href="#Vue路径传值" class="headerlink" title="Vue路径传值"></a>Vue路径传值</h3><ol>
+<li><p>显式</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://localhost:8080/about?a=1">http://localhost:8080/about?a=1</a></p>
+</li>
+<li><p>传:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;</span><br><span class="line">  push:&#x27;/about&#x27;</span><br><span class="line">  query:&#123;</span><br><span class="line">    a:1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接：<code>this.$router.query.a</code></p>
+</li>
+</ul>
+</li>
+<li><p>隐式</p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/about">http://localhost:8080/about</a></p>
+<ul>
+<li><p>传：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;</span><br><span class="line">  name:&#x27;About&#x27;,</span><br><span class="line">  params:&#123;</span><br><span class="line">    a:1</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p>接：<code>this.$router.params.a</code></p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="路由导航守卫有哪些"><a href="#路由导航守卫有哪些" class="headerlink" title="路由导航守卫有哪些"></a>路由导航守卫有哪些</h3><p><strong>全局、路由独享、组件内</strong></p>
+<ol>
+<li>全局<ul>
+<li>beforeEach、beforeResolve、afterEach</li>
+</ul>
+</li>
+<li>路由独享<ul>
+<li>beforeEnter</li>
+</ul>
+</li>
+<li>组件内<ul>
+<li>beforeRouterEnter、beforeRouterUpdate、beforeRoutrLeave</li>
+</ul>
+</li>
+</ol>
+<p>使用场景：判断是否登陆&#x2F;如果登陆就next否则就转跳到登陆页面</p>
+<h3 id="Vue动态路由"><a href="#Vue动态路由" class="headerlink" title="Vue动态路由"></a>Vue动态路由</h3><p>场景：详情页（文章、商品）</p>
+<p>router.js配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">path</span>:<span class="string">&quot;/list&quot;</span>,</span><br><span class="line">  <span class="attr">name</span>:<span class="string">&quot;list&quot;</span>,</span><br><span class="line">  <span class="attr">children</span>:[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">path</span>:<span class="string">&quot;/list/:id&quot;</span>,</span><br><span class="line">      <span class="attr">name</span>:<span class="string">&quot;Details&quot;</span>,</span><br><span class="line">      <span class="attr">component</span>:<span class="function">()=&gt;</span></span><br><span class="line">      	<span class="title function_">import</span>(<span class="string">&quot;../view/Setails.vue&quot;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">component</span>:<span class="function">()=&gt;</span></span><br><span class="line">  	<span class="title function_">import</span>(<span class="string">&quot;../views/List.vue&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/07/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/07/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/" itemprop="url">前端面试题进阶篇（四）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-07T17:50:03+08:00">
+                2022-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Vuex有哪些属性？"><a href="#Vuex有哪些属性？" class="headerlink" title="Vuex有哪些属性？"></a>Vuex有哪些属性？</h3><ul>
+<li>state 类似于组件中data，存放数据</li>
+<li>getters 类似组件中computed</li>
+<li>mutations 类似组件中methosd</li>
+<li>actions 提交mutations的</li>
+<li>modules 把以上4个属性在细分，让仓库更好管理</li>
+</ul>
+<h3 id="Vuex中的mutations和actions区别"><a href="#Vuex中的mutations和actions区别" class="headerlink" title="Vuex中的mutations和actions区别"></a>Vuex中的mutations和actions区别</h3><ul>
+<li>mutation：都是同步事物</li>
+<li>actions：可以包含任意异步操作</li>
+</ul>
+<h3 id="Vuex如何做持久化存储"><a href="#Vuex如何做持久化存储" class="headerlink" title="Vuex如何做持久化存储"></a>Vuex如何做持久化存储</h3><p>Vuex本身不支持持久化存储</p>
+<ol>
+<li>使用localStorage</li>
+<li>使用vuex-persist插件</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/07/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/07/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/" itemprop="url">前端面试题进阶篇（三）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-07T00:13:47+08:00">
+                2022-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vue组件之间如何传值通信"><a href="#vue组件之间如何传值通信" class="headerlink" title="vue组件之间如何传值通信"></a>vue组件之间如何传值通信</h3><ol>
+<li>父组件传值到子组件</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">父组件：</span><br><span class="line">	<span class="tag">&lt;<span class="name">Header</span> <span class="attr">:msg</span>=<span class="string">&#x27;msg&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">Header</span>&gt;</span></span><br><span class="line">子组件：</span><br><span class="line">	props:[&#x27;msg&#x27;]</span><br><span class="line">	props:&#123;</span><br><span class="line">		msg:数据类型</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>子组件传值到父组件</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">子组件：</span><br><span class="line">	this.$emit(&quot;自定义事件名称&quot;，要传的数据)；</span><br><span class="line">父组件：</span><br><span class="line">	<span class="tag">&lt;<span class="name">Header</span> @<span class="attr">childInput</span>=<span class="string">&#x27;getVal&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">Header</span>&gt;</span></span><br><span class="line">	methods:&#123;</span><br><span class="line">	 getVal(msg)&#123;</span><br><span class="line">			//msg就是子组件传递的数据</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="兄弟组件之间的传值"><a href="#兄弟组件之间的传值" class="headerlink" title="兄弟组件之间的传值"></a>兄弟组件之间的传值</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">通过一个中转（bus）</span><br><span class="line">A兄弟传值：</span><br><span class="line">	import bus from &#x27;@/commpn/bus&#x27;</span><br><span class="line">	bus.$emit(&quot;toFRooter&quot;,this.msg)</span><br><span class="line">B兄弟传值：</span><br><span class="line">	import bus from &#x27;@/common/bus&#x27;</span><br><span class="line">	bus.$on(&#x27;toFooter&#x27;,(data)=&gt;&#123;</span><br><span class="line">		//data是this.msg数据</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="computed、methods、watch有什么区别？"><a href="#computed、methods、watch有什么区别？" class="headerlink" title="computed、methods、watch有什么区别？"></a>computed、methods、watch有什么区别？</h3><ol>
+<li>computed vs methods区别<ul>
+<li>computed是有缓存的</li>
+<li>methods没有缓存</li>
+</ul>
+</li>
+<li>computed vs watch区别<ul>
+<li>watch是监听，数据或者路由发生了改变才可以响应（执行）</li>
+<li>computed计算某一个属性的改变，如果某一个值改变了，计算属性会监听到进行返回</li>
+<li>watch是当时监听到数据改变了，才会执行内部代码</li>
+</ul>
+</li>
+</ol>
+<h3 id="props和data优先级谁高"><a href="#props和data优先级谁高" class="headerlink" title="props和data优先级谁高"></a>props和data优先级谁高</h3><p>**props -&gt; methods -&gt; data -&gt; computed -&gt; watch **</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/06/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/06/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/" itemprop="url">前端面试题进阶篇（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-06T14:18:38+08:00">
+                2022-08-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="vue生命周期"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a>vue生命周期</h3><ol>
+<li>有哪些生命周期<ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+<li>beforeUpdate</li>
+<li>updated</li>
+<li>beforeDestroy</li>
+<li>destroyed</li>
+</ul>
+</li>
+<li>一旦进入到页面或者组件，会执行哪些生命周期，顺序<ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+</ul>
+</li>
+<li>在哪个阶段有$el，在哪个阶段有$data<ul>
+<li>beforeCreate 啥也没有</li>
+<li>created 有data没有el</li>
+<li>beforeMount 有data没有el</li>
+<li>mounted 都有</li>
+</ul>
+</li>
+<li>如果加入了keep-alive，会多两个生命周期<ul>
+<li>activated、deactivated</li>
+</ul>
+</li>
+<li>如果加入了keep-alive，第一次进入组件会执行哪些生命？<ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted</li>
+<li>avtivated</li>
+</ul>
+</li>
+<li>如果加入了keep-alive，第二次或者第N次进入组件会执行哪些生命周期？<ul>
+<li>只执行一个生命周期：activated</li>
+</ul>
+</li>
+</ol>
+<h3 id="谈谈对keep-alive的了解"><a href="#谈谈对keep-alive的了解" class="headerlink" title="谈谈对keep-alive的了解"></a>谈谈对keep-alive的了解</h3><ol>
+<li><p>是什么</p>
+<p>vue系统自带的一个组件，功能：用来缓存组件的。提升性能</p>
+</li>
+<li><p>使用场景</p>
+<p>就是用来缓存组件的，提升项目的性能。集体实现比如：首页进入到详情页，如果用户在首页每次点击都是相同的，那么详情页呼吁没必要请求N次了，直接缓存起来就可以了，当然如果点击的不是同一个，那么直接请求。</p>
+</li>
+</ol>
+<p>###  v-if和v-show区别</p>
+<ol>
+<li>展示形式不同<ul>
+<li> v-if是创建一个dom节点</li>
+<li> v-show是display：none、block</li>
+</ul>
+</li>
+<li>使用场景不同<ul>
+<li>初次加载v -if要比v-show好，页面不会做加载盒子</li>
+<li>频繁切换 v-show要比v-if好，创建和删除的开销太大了，显示和隐藏开销比较小</li>
+</ul>
+</li>
+</ol>
+<p>###  v-if和v-for优先级</p>
+<p> v-for的优先级要比 v-if高（是在源码中体现的：function genElement）</p>
+<h3 id="ref和nextTick分别是什么"><a href="#ref和nextTick分别是什么" class="headerlink" title="ref和nextTick分别是什么"></a>ref和nextTick分别是什么</h3><ul>
+<li>ref 获取dom</li>
+<li>nextTick 获取更新后的dom内容</li>
+</ul>
+<h3 id="scoped原理"><a href="#scoped原理" class="headerlink" title="scoped原理"></a>scoped原理</h3><ol>
+<li>作用：让样式在本组件中生效，不影响其他组件</li>
+<li>原理：给节点新增自定义属性，然后css根据属性选择器添加样式</li>
+</ol>
+<h3 id="vue中样式穿透写法"><a href="#vue中样式穿透写法" class="headerlink" title="vue中样式穿透写法"></a>vue中样式穿透写法</h3><ol>
+<li>通过&gt;&gt;&gt;穿透scoped</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line">  外层&gt;&gt;&gt;第三方组件类名&#123;</span><br><span class="line">    样式</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>&#x2F;deep&#x2F;在less中使用</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang:</span>&#x27;<span class="attr">less</span>&#x27; <span class="attr">scoped</span>&gt;</span></span><br><span class="line">  /deep/ 第三方组件类名&#123;</span><br><span class="line">    样式</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>:: v-deep在scss中使用</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang:</span>&#x27;<span class="attr">scss</span>&#x27; <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  ::v-deep 第三方组件类名&#123;</span></span><br><span class="line"><span class="language-css">    样式</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/05/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jerry">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/08/05/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="url">前端面试题进阶篇（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-08-05T23:39:33+08:00">
+                2022-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="var、let、const区别"><a href="#var、let、const区别" class="headerlink" title="var、let、const区别"></a>var、let、const区别</h3><p><strong>区别一：</strong></p>
+<ul>
+<li>var 具有变量提升的机制</li>
+<li>let和const没有变量提升的机制</li>
+</ul>
+<p><strong>区别二：</strong></p>
+<ul>
+<li>var 可以多次声明同一个变量</li>
+<li>let和const不可以多次声明同一个变量</li>
+</ul>
+<p><strong>区别三：</strong></p>
+<ul>
+<li>var let 声明变量的</li>
+<li>const 声明常量</li>
+<li>var和let声明的变量可以再次赋值，但是const不可以再次赋值了</li>
+</ul>
+<p><strong>区别四：</strong></p>
+<ul>
+<li>var声明的变量没有自身作用域</li>
+<li>let和const声明的变量有自身的作用域</li>
+</ul>
+<h3 id="将下列对象进行合并"><a href="#将下列对象进行合并" class="headerlink" title="将下列对象进行合并"></a>将下列对象进行合并</h3><p><strong>方法一：Object.assign</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">4</span>&#125;</span><br><span class="line"><span class="keyword">const</span> b = &#123;<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj1 = <span class="title class_">Object</span>.<span class="title function_">assign</span>(a,b)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( obj1 )</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：…</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj2 = &#123;...a,...b&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( obj2 )</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法三：自己封装方法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">extend</span>(<span class="params"> target, source </span>)&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> source)&#123;</span><br><span class="line">    target[key] = source[key]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> target</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">extend</span>(a,b) )</span><br></pre></td></tr></table></figure>
+
+<h3 id="箭头函数和普通函数有什么区别？"><a href="#箭头函数和普通函数有什么区别？" class="headerlink" title="箭头函数和普通函数有什么区别？"></a>箭头函数和普通函数有什么区别？</h3><ol>
+<li>this指向的问题</li>
+</ol>
+<p>​	箭头函数中的this只有箭头函数定义的时候就决定的，而且不可修改的</p>
+<p>​	箭头函数的this指向定义时候、外层第一个普通函数的this</p>
+<ol start="2">
+<li>箭头函数不能new（不能当作构造函数）</li>
+<li>箭头函数prototype</li>
+<li>箭头函数arguments</li>
+</ol>
+<h3 id="Promise有几种状态"><a href="#Promise有几种状态" class="headerlink" title="Promise有几种状态"></a>Promise有几种状态</h3><p><strong>三种状态：</strong></p>
+<ul>
+<li>pending（进行中）</li>
+<li>fulfilled（已成功）</li>
+<li>rejected（已失败）</li>
+</ul>
+<h3 id="find和dilter的区别"><a href="#find和dilter的区别" class="headerlink" title="find和dilter的区别"></a>find和dilter的区别</h3><p><strong>区别一：返回的内容不同</strong></p>
+<p>​	filter 返回是新数组</p>
+<p>​	find 返回具体的内容</p>
+<p><strong>区别二：</strong></p>
+<p>​	find 匹配到第一个即返回</p>
+<p>​	filter 返回整体（没一个匹配到的都返回）</p>
+<h3 id="some和every的区别"><a href="#some和every的区别" class="headerlink" title="some和every的区别"></a>some和every的区别</h3><p>some &#x3D;&#x3D;&gt; 如果有一项匹配则返回true</p>
+<p>every &#x3D;&#x3D;&gt; 全部匹配才会返回true</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/08/04/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%83%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -333,6 +1676,15 @@
 </ol>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj3 = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">  <span class="attr">b</span>:<span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj4 = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj3))</span><br><span class="line"><span class="comment">//递归的形式</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">copyObj</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">  <span class="keyword">if</span>( <span class="title class_">Array</span>.<span class="title function_">isArray</span>(obj))&#123;</span><br><span class="line">    <span class="keyword">var</span> newObj = [];</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> newObj = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> ( <span class="keyword">var</span> key <span class="keyword">in</span> obj )&#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="keyword">typeof</span> obj[key] == <span class="string">&#x27;object&#x27;</span>)&#123;</span><br><span class="line">      newObj[key] = <span class="title function_">copyObj</span>(obj[key]);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      newObj[key] = obj[key];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> newObj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">copyObj</span>(obj5) )</span><br></pre></td></tr></table></figure>
 
+<p><strong>拷贝一些方法：</strong></p>
+<ol>
+<li>Object.saaign() 浅拷贝</li>
+<li>Array.prototype.slice() 深拷贝</li>
+<li>Array.prototype.concat() 深拷贝</li>
+<li>JSON.parse(JSON.stringify()) 深拷贝</li>
+<li>Loadsh库中的API，如.clone()、.cloneDeep()</li>
+<li>拓展运算符 …arr 深拷贝</li>
+</ol>
 <h3 id="localStorage、sessionStorage、cookoe有什么区别"><a href="#localStorage、sessionStorage、cookoe有什么区别" class="headerlink" title="localStorage、sessionStorage、cookoe有什么区别"></a>localStorage、sessionStorage、cookoe有什么区别</h3><p><strong>共同点：</strong>在客户端存放数据</p>
 <p><strong>区别：</strong></p>
 <ol>
@@ -484,7 +1836,8 @@
 </ol>
 <h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><ol>
 <li><p>闭包是什么</p>
-<p>闭包是一个函数加上到创建函数的作用域的链接，闭包“关闭”了函数的只有变量</p>
+<p>闭包就是能够读取其他函数内部变量的函数</p>
+<p>闭包基本上就是一个函数内部返回一个函数</p>
 </li>
 <li><p>闭包可以解决什么问题【闭包的优点】</p>
 <ol>
@@ -594,1320 +1947,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/31/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/31/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%94%EF%BC%89/" itemprop="url">前端面试题基础篇（五）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-31T14:00:14+08:00">
-                2022-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="JS作用域-this指向-原型"><a href="#JS作用域-this指向-原型" class="headerlink" title="JS作用域+this指向+原型"></a>JS作用域+this指向+原型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Foo</span>(<span class="params"></span>)&#123;</span><br><span class="line">  getName = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>)&#125;<span class="comment">//注意是全局的window</span></span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>;<span class="comment">//这里是this的默认绑定，返回值为window</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//给Foo定义getName方法</span></span><br><span class="line"><span class="title class_">Foo</span>.<span class="property">getName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>)&#125;</span><br><span class="line"><span class="comment">//给Foo的原型添加getName方法</span></span><br><span class="line"><span class="title class_">Foo</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>)&#125;</span><br><span class="line"><span class="comment">//定义全局getName方法，注意变量提升</span></span><br><span class="line"><span class="keyword">var</span> getName = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">4</span>)&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getName</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">5</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Foo</span>.<span class="title function_">getName</span>();<span class="comment">//2</span></span><br><span class="line"><span class="title function_">getName</span>();<span class="comment">//4</span></span><br><span class="line"><span class="title class_">Foo</span>().<span class="title function_">getName</span>();<span class="comment">//1</span></span><br><span class="line"><span class="title function_">getName</span>();<span class="comment">//1 此时全局的getName（）已经被修改为Foo内的那个函数</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Foo</span>().<span class="title function_">getName</span>();<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="number">10</span>,</span><br><span class="line">  <span class="attr">b</span>:&#123;</span><br><span class="line">    <span class="attr">a</span>:<span class="number">2</span>,</span><br><span class="line">    <span class="attr">fn</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">a</span>);<span class="comment">//2</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);<span class="comment">//Object b的对象</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">o.<span class="property">b</span>.<span class="title function_">fn</span>();</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">name</span> = <span class="string">&#x27;ByteDance&#x27;</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">A</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = <span class="string">&#x27;123&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">A.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getA</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="title function_">A</span>()</span><br><span class="line"><span class="keyword">let</span> funcA = a.<span class="property">getA</span></span><br><span class="line"><span class="title function_">funcA</span>()<span class="comment">//this代表window</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> length = <span class="number">10</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fn</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">length</span> +<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">length</span>:<span class="number">5</span>,</span><br><span class="line">  <span class="attr">test1</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">fn</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="property">test2</span> = fn</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( obj.<span class="title function_">test1</span>() ) <span class="comment">//11</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="title function_">fn</span>() === obj.<span class="title function_">test2</span>() ) <span class="comment">//false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( obj.<span class="title function_">test1</span>() === obj.<span class="title function_">test2</span>() )<span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="JS判断变量是不是数组"><a href="#JS判断变量是不是数组" class="headerlink" title="JS判断变量是不是数组"></a>JS判断变量是不是数组</h3><p><strong>方法一：isArray</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Array</span>.<span class="title function_">isArray</span>(arr))</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>方法二：instanceof</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr instansof <span class="title class_">Array</span>)<span class="comment">//要求变量必须在当前页面声明</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>方法三：原型</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property">_proto_</span>.<span class="property">constructor</span> == <span class="title class_">Array</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property">constructor</span> == <span class="title class_">Array</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Object</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">toString</span>.<span class="title function_">call</span>(arr))</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>方法四：isPrototypeOf()</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(arr.<span class="property"><span class="keyword">prototype</span></span>.<span class="title function_">isPrototypeOf</span>(arr))</span><br></pre></td></tr></table></figure>
-
-<h3 id="JS数组去重"><a href="#JS数组去重" class="headerlink" title="JS数组去重"></a>JS数组去重</h3><p><strong>new set</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>)&#123;</span><br><span class="line">  <span class="keyword">return</span>[...<span class="keyword">new</span> <span class="title function_">set</span>(arr)]</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr))</span><br></pre></td></tr></table></figure>
-
-<p><strong>indexOf</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>)&#123;</span><br><span class="line">  <span class="keyword">var</span> brr = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(brr.<span class="title function_">indexOf</span>(arr[i]) == -<span class="number">1</span>&#123;</span><br><span class="line">       brr.<span class="title function_">push</span>(arr[i])</span><br><span class="line">       &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">return</span> brr</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr))</span><br></pre></td></tr></table></figure>
-
-<p><strong>sort</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">unique</span>(<span class="params">arr</span>)&#123;</span><br><span class="line">  arr = arr.<span class="title function_">sort</span>()</span><br><span class="line">  <span class="keyword">var</span> brr = []</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;arr.<span class="property">length</span>;i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr[i]!==arr[i-<span class="number">1</span>])&#123;</span><br><span class="line">      brr.<span class="title function_">push</span>(arr[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> brr</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">unique</span>(arr))</span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E5%9B%9B%EF%BC%89/" itemprop="url">前端面试题基础篇（四）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T23:48:41+08:00">
-                2022-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="延迟加载JS有哪些方式？"><a href="#延迟加载JS有哪些方式？" class="headerlink" title="延迟加载JS有哪些方式？"></a>延迟加载JS有哪些方式？</h3><p><strong>延迟加载：</strong>async、defer</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&#x27;script.js&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>defer：等html全部解析完，才会执行js代码，顺次执行js脚本。</p>
-<p>async：async和html解析同步的（一起的），不是顺次执行js脚本（谁先加载完谁先执行）</p>
-<h3 id="JS数据类型有哪些？"><a href="#JS数据类型有哪些？" class="headerlink" title="JS数据类型有哪些？"></a>JS数据类型有哪些？</h3><p><strong>基本类型：</strong>String、Number、Boolean、Undefined、Null、Symbol、Bigint</p>
-<p><strong>引用类型：</strong>Object</p>
-<h3 id="null和undefined的区别"><a href="#null和undefined的区别" class="headerlink" title="null和undefined的区别"></a>null和undefined的区别</h3><ol>
-<li>作者在设计js的时候先设计的null</li>
-<li>null会被隐式转换成为0，很不容易发现错误</li>
-<li>undefined是为了填补之前的坑</li>
-</ol>
-<p>具体区别：null是表示‘无’的对象（空指针对象），转为数值时为0，undefined是一个表示‘无’的原始值，转为数值时为NaN</p>
-<h3 id="x3D-x3D-和-x3D-x3D-x3D-区别"><a href="#x3D-x3D-和-x3D-x3D-x3D-区别" class="headerlink" title="&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;区别"></a>&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;区别</h3><ol>
-<li>对于string、number等基础类型，&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;是有区别的<ol>
-<li>不同类型间比较，&#x3D;&#x3D;之比较“转化成同一类型后的值”看“值”是否相等，&#x3D;&#x3D;&#x3D;如果类型不同，其结果就是不等。</li>
-<li>同类型比较，直接进行“值”比较，两者结果一样。</li>
-</ol>
-</li>
-<li>对于Array，Object等高级类型，&#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;是没有区别的</li>
-<li>基础类型与高级类型，&#x3D;&#x3D;与&#x3D;&#x3D;&#x3D;是有区别的<ol>
-<li>对于&#x3D;&#x3D;，将高级转换为基础类型，进行“值”比较</li>
-<li>因为类型不同，&#x3D;&#x3D;&#x3D;结果为false</li>
-</ol>
-</li>
-<li>！&#x3D;为&#x3D;&#x3D;的非运算，！&#x3D;&#x3D;为&#x3D;&#x3D;&#x3D;的非运算</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> str = <span class="string">&quot;1&quot;</span></span><br><span class="line"><span class="keyword">let</span> test = <span class="number">1</span></span><br><span class="line">test == num  <span class="comment">//true 相同类型 相同值</span></span><br><span class="line">test === num <span class="comment">//true 相同类型 相同值</span></span><br><span class="line">test !== num <span class="comment">//false test与num类型相同，其值也相同，非运算结果为false</span></span><br><span class="line">num == str <span class="comment">//true 把str转换为数字，检查其是否相等</span></span><br><span class="line">num != str <span class="comment">//false == 的 非运算</span></span><br><span class="line">num === str <span class="comment">//false 类型不同，直接返回false</span></span><br><span class="line">num !== str <span class="comment">//true num与str类型不同 意味着其两者不等 非运算自然是true </span></span><br></pre></td></tr></table></figure>
-
-<h4 id="JS微任务和宏任务"><a href="#JS微任务和宏任务" class="headerlink" title="JS微任务和宏任务"></a>JS微任务和宏任务</h4><ol>
-<li><p>js是单线程的语言。</p>
-</li>
-<li><p>js代码执行流程：同步执行完 –&gt;事件循环</p>
-<p>同步的任务都执行完了，才会执行事件循环的内容</p>
-<p>进入事件循环：请求、定时器、事件。。。 </p>
-</li>
-<li><p>事件循环中包含：【微任务、宏任务】</p>
-</li>
-</ol>
-<p>微任务：promise.then</p>
-<p>宏任务：setTimeout..</p>
-<p>要执行宏任务的前提是清空了所有的微任务</p>
-<p>流程：同步–&gt;事件循环【微任务、宏任务】–&gt;微任务–&gt;宏任务–&gt;微任务…</p>
-<h3 id="JS作用域"><a href="#JS作用域" class="headerlink" title="JS作用域"></a>JS作用域</h3><ol>
-<li>除了函数外，js是没有块级作用域的</li>
-<li>作用域链：内部可以访问外部的变量，但是外部不能访问内部的变量</li>
-</ol>
-<p>​		注意：如果内部有，有限查找到内部，如果内部没有就查找外部的</p>
-<ol start="3">
-<li>注意声明变量是用var还是没有写（window.）</li>
-<li>注意：js有变量提升的机制</li>
-<li>优先级：声明变量 &gt; 声明普通变量 &gt; 参数 &gt; 变量提升</li>
-</ol>
-<h3 id="JS对象考题"><a href="#JS对象考题" class="headerlink" title="JS对象考题"></a>JS对象考题</h3><p><strong>注意点：</strong></p>
-<ol>
-<li><p>对象是通过new操作符构建出来的，所以对象之间不相等（除了引用外）</p>
-</li>
-<li><p>对象注意：引用类型（共同一个地址）</p>
-</li>
-<li><p>对象的key都是字符串类型</p>
-</li>
-<li><p>对象如何招属性｜方法：</p>
-<p>查找规则：先在对象本身找 &#x3D;&#x3D;&#x3D;&gt; 构造函数中找 &#x3D;&#x3D;&#x3D;&gt; 对象原型中找 &#x3D;&#x3D;&#x3D;&gt; 构造函数原型中找 &#x3D;&#x3D;&#x3D;&gt; 对象上一层原型查找</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]===[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment">//false   [1,2,3]相当于new Array(1,2,3)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">  <span class="attr">a</span>:<span class="string">&#x27;hellow&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = obj1</span><br><span class="line">obj2.<span class="property">a</span> = <span class="string">&#x27;world&#x27;</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(obj1); <span class="comment">//&#123;a:world&#125;</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(a) <span class="comment">//undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;&#125;</span><br><span class="line"><span class="keyword">var</span> b = &#123;<span class="attr">key</span>:<span class="string">&#x27;a&#x27;</span>&#125;</span><br><span class="line"><span class="keyword">var</span> c = &#123;<span class="attr">key</span>:<span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"><span class="comment">//b要作为属性名先转为字符串，相当于： a[object Object]：=&#x27;123&#x27;</span></span><br><span class="line">a[b]=<span class="string">&#x27;123&#x27;</span></span><br><span class="line"><span class="comment">//打印一下a 此时a只有一个属性名为object Object，属性为123的键值对</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)<span class="comment">//&#123;[object Object]:&#x27;123&#x27;&#125;</span></span><br><span class="line"><span class="comment">// 同上 c要作为属性名先转为字符串，相当于a[object Object]:=&#x27;456&#x27;</span></span><br><span class="line">a[c]=<span class="string">&#x27;456&#x27;</span></span><br><span class="line"><span class="comment">//再打印一下a，此时还是只有一个属性名为object Object，属性值为456的键值对</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a)<span class="comment">//&#123;[object Object]:&#x27;456&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//上面的a[c]=&#x27;456&#x27;只是在给a[object Object]重新赋值而已</span></span><br><span class="line"><span class="comment">//打印a[b]其实就是在打印a[object Object]由于最后一次赋值为456</span></span><br><span class="line"><span class="comment">//故：</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a[b])<span class="comment">//456</span></span><br></pre></td></tr></table></figure>
-
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%89%EF%BC%89/" itemprop="url">前端面试题基础篇（三）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T01:54:30+08:00">
-                2022-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="消除浮动有哪些方法？"><a href="#消除浮动有哪些方法？" class="headerlink" title="消除浮动有哪些方法？"></a>消除浮动有哪些方法？</h3><ol>
-<li>触发BFC</li>
-<li>多创建一个盒子，添加样式：clear：both</li>
-<li>after方法</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ul:after&#123;</span><br><span class="line">	content:&#x27;&#x27;;</span><br><span class="line">	display:block;</span><br><span class="line">	clear:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="position有哪些值？分别是根据什么定位的？"><a href="#position有哪些值？分别是根据什么定位的？" class="headerlink" title="position有哪些值？分别是根据什么定位的？"></a>position有哪些值？分别是根据什么定位的？</h4><p><strong>static</strong>（默认） 没有定位</p>
-<p><strong>fixed</strong>  固定定位，相对于浏览器窗口进行定位</p>
-<p><strong>relative</strong>  相对于自身定位，不脱离文档流</p>
-<p><strong>absolute</strong>  相对于第一个有relative的父元素，脱离文档流</p>
-<p>relative和absolute区别：</p>
-<ol>
-<li>relative不脱离文档流、absolute脱离文档流</li>
-<li>relative相对于自身、absolute相对于第一个有relative的父元素</li>
-<li>relative有left、top值</li>
-<li>absolute有left、right、top、bottom值</li>
-</ol>
-<h3 id="css-sprite是什么-有什么优缺点？"><a href="#css-sprite是什么-有什么优缺点？" class="headerlink" title="css sprite是什么 有什么优缺点？"></a>css sprite是什么 有什么优缺点？</h3><p><strong>sprite：</strong>将一个页面涉及到的所有零星图片都包含到一张大图中去。</p>
-<p><strong>优点：</strong>减少了http请求的次数，提高了性能。</p>
-<p><strong>缺点：</strong>维护比较差（例如图片位置进行修改或者内容宽高修改）</p>
-<h3 id="display-none-和visibility-hidden的区别？"><a href="#display-none-和visibility-hidden的区别？" class="headerlink" title="display:none 和visibility:hidden的区别？"></a>display:none 和visibility:hidden的区别？</h3><p><strong>1.作用不同：</strong></p>
-<p>​	visibility:hidden 将元素隐藏，但是仍占用位置</p>
-<p>​	display:none 不占用位置 </p>
-<p><strong>2.重绘和回流的问题：</strong></p>
-<p>​	visibility:hidden 产生重绘</p>
-<p>​	display:none  产生重绘和回流</p>
-<p>​	产生回流一定会造成重绘，但是重绘不一定会造成回流。</p>
-<p>产生回流的情况：改变元素的位置（left、top…）、显示隐藏元素…</p>
-<p>产生重绘的情况：样式改变（background、color …)</p>
-<h3 id="opacity和rgba区别"><a href="#opacity和rgba区别" class="headerlink" title="opacity和rgba区别"></a>opacity和rgba区别</h3><p><strong>共同性：</strong></p>
-<ol>
-<li>opacity 取值范围0到1之间，0表示完全透明，1表示不透明</li>
-<li>rgba R表示红色，G表示绿色，B表示蓝色，取值可以在正整数或者百分数。A表示透明度取值0到1之间</li>
-</ol>
-<p><strong>区别：</strong></p>
-<p>​	opacity会继承父元素的opacity属性，而RGBA设置的元素的后代元素不会继承不透明属性。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/28/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/" itemprop="url">前端面试题基础篇（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-28T01:05:01+08:00">
-                2022-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="介绍CSS的盒子模型"><a href="#介绍CSS的盒子模型" class="headerlink" title="介绍CSS的盒子模型"></a>介绍CSS的盒子模型</h3><p>CSS的盒子模型有哪些：标准盒子模型，怪异盒子模型</p>
-<p>区别：</p>
-<p>​	标准盒子模型：margin、border、padding、content</p>
-<p>​	怪异盒子模型：margin、context（ border + padding + content ）</p>
-<p>转换：</p>
-<p>​	box-sizing：content-box；&#x2F;&#x2F;标准盒子模型</p>
-<p>​	box-sizing：border-box；&#x2F;&#x2F;怪异盒子模型</p>
-<h3 id="用CSS画一个三角形"><a href="#用CSS画一个三角形" class="headerlink" title="用CSS画一个三角形"></a>用CSS画一个三角形</h3><p>用边框（border）画，例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;top&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;bottom&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.top</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-bottom</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.bottom</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-top</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.right</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-left</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.left</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">100px</span> solid transparent;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border-right</span>: <span class="number">100px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="一个盒子不给宽度和高度如何水平垂直居中？"><a href="#一个盒子不给宽度和高度如何水平垂直居中？" class="headerlink" title="一个盒子不给宽度和高度如何水平垂直居中？"></a>一个盒子不给宽度和高度如何水平垂直居中？</h3><p><strong>方法一</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>方法二</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span>main<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">background</span>: red;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-class">.container</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">width</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">height</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">border</span>: <span class="number">1px</span> solid black;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="对BFC规范（块级格式化上下文：block-formatting-context）的理解？"><a href="#对BFC规范（块级格式化上下文：block-formatting-context）的理解？" class="headerlink" title="对BFC规范（块级格式化上下文：block formatting context）的理解？"></a>对BFC规范（块级格式化上下文：block formatting context）的理解？</h3><p>BFC就是页面上一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。</p>
-<ol>
-<li>了解BFC：块级格式化上下文。</li>
-<li>BFC的原则：如果一个元素具有BFC，那么内部元素不管怎么样都不会影响到外面的元素。</li>
-<li>如何触发BFC：<ol>
-<li>float的值非none</li>
-<li>overfloat的值非visible</li>
-<li>display的值为：inline-block、table-cell . . .</li>
-<li>position的值为absolute、fixed</li>
-</ol>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/" itemprop="url">前端面试题基础篇（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-27T00:42:54+08:00">
-                2022-07-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="行内元素有哪些？块级元素有哪些？空（void）元素有哪些？"><a href="#行内元素有哪些？块级元素有哪些？空（void）元素有哪些？" class="headerlink" title="行内元素有哪些？块级元素有哪些？空（void）元素有哪些？"></a>行内元素有哪些？块级元素有哪些？空（void）元素有哪些？</h2><p><strong>行内元素：</strong>a、b、span、img、input、select、strong；</p>
-<p><strong>块级元素：</strong>div、ul、ol、l i、dl、dt、dd、h1、h2、h3、h4、h5、h6、p；</p>
-<p><strong>空元素：</strong>即没有内容的HTML元素。空元素是在开始标签中关闭的，也就是空元素没有闭合标签：</p>
-<ul>
-<li>常用：<code>&lt;br&gt; &lt;hr&gt; &lt;img&gt; &lt;input&gt; &lt;link&gt; &lt;meta&gt;</code></li>
-<li>不常用：<code>&lt;area&gt;、&lt;base&gt;、&lt;col&gt;、&lt;colgroup&gt;、&lt;command&gt;、&lt;embed&gt;、&lt;keygen&gt;、&lt;param&gt;、&lt;source&gt;、&lt;track&gt;、&lt;wbr&gt;</code></li>
-</ul>
-<h3 id="块级元素"><a href="#块级元素" class="headerlink" title="块级元素"></a>块级元素</h3><p>块级元素：每个块级元素通常都会独占一行或者是多行，可以对其单独设置高度、宽度及对齐等属性。</p>
-<p>块级元素的特点：</p>
-<ol>
-<li>块级元素会独占一行</li>
-<li>高度，行高，外边距和内边距都可以设置</li>
-<li>可以容纳内联元素和其他块级元素</li>
-</ol>
-<h3 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h3><p>行内元素（内联元素）：不占有独立的区域，一个行内元素只占据它对应标签的边框所包含的空间。</p>
-<p>行内元素的特点：</p>
-<ol>
-<li>和相邻的行内元素在一行上</li>
-<li>高度和宽度无法设置，水平方向上的外边距和内边距可以设置</li>
-<li>行内元素只能容纳纯文本或者是其他的行内元素（a标签除外）</li>
-</ol>
-<h3 id="互相转换"><a href="#互相转换" class="headerlink" title="互相转换"></a>互相转换</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">display:inline；	把某元素转换成行内元素</span><br><span class="line">display:inline-block；	把某元素转换成行内块元素（可设置宽高）</span><br><span class="line">display:block；		把某元素转换成块级元素</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="页面导入样式时，使用link和-import有什么区别？"><a href="#页面导入样式时，使用link和-import有什么区别？" class="headerlink" title="页面导入样式时，使用link和@import有什么区别？"></a>页面导入样式时，使用link和@import有什么区别？</h1><p><strong>区别</strong></p>
-<ol>
-<li>页面被加载时，link会同时被加载，而@import引用的css会等页面被加载完再加载</li>
-<li>link的样式的权重高于@import的权重</li>
-<li>link属于XHTML标签，而@import是css提供的</li>
-<li>@import一般只在IE5以上才能识别，而link是XHTML标签，无兼容问题。</li>
-</ol>
-<h1 id="title与h1的区别、b与strong的区别、i与em的区别？"><a href="#title与h1的区别、b与strong的区别、i与em的区别？" class="headerlink" title="title与h1的区别、b与strong的区别、i与em的区别？"></a>title与h1的区别、b与strong的区别、i与em的区别？</h1><p><strong>title和h1的区别</strong></p>
-<ul>
-<li>title：网页标题标签，概括了网站信息，给搜索引擎看的，可以告诉搜索引擎或者用户这个网页的内容是什么</li>
-<li>h1：文本标签 给用户看的，网页内容的标题，是网页内容的一部分</li>
-</ul>
-<p><strong>b和strong的区别</strong></p>
-<ul>
-<li>b：实体标签，用来给文字加粗，没有实际的含义</li>
-<li>strong： 逻辑标签，用来加强字符语气的（盲人阅读器中），用以强调的</li>
-</ul>
-<p><strong>i和em的区别</strong></p>
-<ul>
-<li>i：实体标签，文字倾斜，没有实际含义</li>
-<li>em：逻辑标签，表示标签内字符很重要</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/20/Typora%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/20/Typora%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" itemprop="url">Typora使用教程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-20T23:53:25+08:00">
-                2022-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一、Markdown语法"><a href="#一、Markdown语法" class="headerlink" title="一、Markdown语法"></a>一、Markdown语法</h1><h2 id="1-1-标题"><a href="#1-1-标题" class="headerlink" title="1.1 标题"></a>1.1 标题</h2><p>使用#可以表示标题，以及标题对应一个#，二级标题对应两个#号，至多为六级标题。（#后要紧接一个空格才能生效）</p>
-<p>也可以使用快捷键Ctrl+1表示对应的标题。（Ctrl+0表示段落）</p>
-<h2 id="1-2-字体"><a href="#1-2-字体" class="headerlink" title="1.2 字体"></a>1.2 字体</h2><ul>
-<li><p>用一对星号 * 包裹的文本表示斜体文本，如： * 要变斜体的文本 * ，<em>斜体文本</em>（*前后不可有空格）；</p>
-<p>也可以用一对下划线 _ 包裹文本来表示斜体文本，快捷键Ctrl+I可以达到相同的效果。</p>
-</li>
-<li><p>用一对 ** 包裹文本可以表示粗体文字，如 ：** 要变粗的文本 ** ，<strong>粗体文本</strong>；</p>
-<p>也可以用一对 __(两个下划线) 包裹文本来表示粗体文本，快捷键Ctrl+B可以达到相同的效果。</p>
-</li>
-<li><p>用一对 ***（或一对 ___ ) 包裹的文本表示斜粗体文本。   <em><strong>斜粗体文本</strong></em></p>
-</li>
-</ul>
-<h2 id="1-3-分割线"><a href="#1-3-分割线" class="headerlink" title="1.3 分割线"></a>1.3 分割线</h2><ul>
-<li><p>分割线，用三个及以上的 + 号或 * 号 或 - 来表示一条分割线</p>
-<hr>
-<hr>
-<p>+++</p>
-</li>
-<li><p>删除线，可以使用一对 ~~ 包裹的文本来表示要加删除线的文本，如：~~ 要加删除线的文本 ~~ ，<del>加删除线的文本</del>（快捷键：Ctrl+Shift+5）</p>
-</li>
-<li><p>下划线，可以使用HTML的标签 &lt;u&gt; 和 &lt;&#x2F;u&gt; 表示要加下划线的文本，如： &lt;u&gt; 要加下划线的文本 &lt;&#x2F;u&gt;    <u>要加下划线的文本</u></p>
-</li>
-</ul>
-<h2 id="1-4-列表"><a href="#1-4-列表" class="headerlink" title="1.4 列表"></a>1.4 列表</h2><p>可以使用 * , + 或 - 符号来表示无序列表项，（符号后要添加一个空格）</p>
-<pre><code>* 第一项
-* 第二项
-* 第三项
-</code></pre>
-<p>可以使用数字加 . 在加上空格来表示有序列表</p>
-<pre><code>1. 第一项
-
-2. 第二项
-
-3. 第三项
-</code></pre>
-<h4 id="嵌套列表"><a href="#嵌套列表" class="headerlink" title="嵌套列表"></a>嵌套列表</h4><p>在使用* , + 或 - 符号进入列表之后，然后空格换行会自动生成第二项，按下Tab键可以将第二项变为第一项的子项，按回车退出当前列表项。</p>
-<ul>
-<li><p>一</p>
-<ul>
-<li>1.1<ul>
-<li>1.1.1<ul>
-<li>1.1.1.2</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>二</p>
-<ul>
-<li>2.1<ul>
-<li>2.1.1</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>可以在无序列表中嵌套有序列表，也可以在有序列表中嵌套无序列表。</p>
-<h2 id="1-5-区块"><a href="#1-5-区块" class="headerlink" title="1.5 区块"></a>1.5 区块</h2><p>可以使用&gt;加空格来表示区块</p>
-<blockquote>
-<p>这是区块</p>
-<blockquote>
-<p>二级区块</p>
-<blockquote>
-<p>三级区块</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="1-6-代码"><a href="#1-6-代码" class="headerlink" title="1.6 代码"></a>1.6 代码</h2><p>可以使用反引号`包裹代码来表示</p>
-<p>比如<code>printf(&quot;Hello world&quot;)</code></p>
-<p>如果是代码段，可以使用三个```加回车+编程语言表示。如：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以在代码块右下角更换编程语言。</p>
-<h2 id="1-7-链接"><a href="#1-7-链接" class="headerlink" title="1.7 链接"></a>1.7 链接</h2><p>链接的使用方法有两种：</p>
-<p><code>[链接文字]（链接地址）</code> –&gt;<code>[百度](https://www.baidu.com)</code> –&gt; <a target="_blank" rel="noopener" href="https://www.baidu.com/">百度</a></p>
-<p><code>&lt;链接地址&gt;</code> –&gt; <code>&lt;https://www.baidu.com&gt;</code> –&gt; <a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a></p>
-<h2 id="1-8-图片"><a href="#1-8-图片" class="headerlink" title="1.8 图片"></a>1.8 图片</h2><p>可以使用如下语法来插入图片</p>
-<p><code>![alt 属性文本](图片地址)</code></p>
-<p><code>![alt 属性文本](图片地址 &quot;标题&quot;)</code></p>
-<p><img src="https://www.baidu.com/img/pc_27928619fedf2633952764032537980f.gif" alt="网络图片" title="百度"></p>
-<h2 id="1-9-表格"><a href="#1-9-表格" class="headerlink" title="1.9 表格"></a>1.9 表格</h2><p>制作表格使用 | 来分隔不同的单元格，使用 - 来分隔表头和其它行</p>
-<p>语法如下</p>
-<blockquote>
-<p>|表头|表头|表头|</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>表头</th>
-<th>表头</th>
-<th>表头</th>
-</tr>
-</thead>
-</table>
-<p>也可以使用快捷键Ctrl+T插入表格。（表格左上角可以进行编辑操作）</p>
-<h1 id="二、Typora与HTML"><a href="#二、Typora与HTML" class="headerlink" title="二、Typora与HTML"></a>二、Typora与HTML</h1><h2 id="2-1-改变字体颜色及大小"><a href="#2-1-改变字体颜色及大小" class="headerlink" title="2.1 改变字体颜色及大小"></a>2.1 改变字体颜色及大小</h2><p>我门可以使用<code>&lt;font&gt;&lt;/font&gt;</code>标签来改变字体的颜色及大小，如：</p>
-<blockquote>
-<p>&lt;font size&#x3D;3 color&#x3D;”red”&gt;字体颜色为红色，大小为3&lt;&#x2F;font&gt;</p>
-<p>&lt;font size&#x3D;4 color&#x3D;”blue”&gt;字体颜色为蓝色，大小为4&lt;&#x2F;font&gt;</p>
-<p>&lt;font size&#x3D;6 color&#x3D;”violet”&gt;字体颜色为紫罗兰，大小为6&lt;&#x2F;font&gt;</p>
-</blockquote>
-<p><font size=3 color="red">字体颜色为红色，大小为3</font></p>
-<p><font size=4 color="blue">字体颜色为蓝色，大小为4</font></p>
-<p><font size=6 color="violet">字体颜色为紫罗兰，大小为6</font></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/20/test/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/20/test/" itemprop="url">test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-20T15:55:34+08:00">
-                2022-07-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="test"><a href="#test" class="headerlink" title="test"></a>test</h3><p>this is a test</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/18/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jerry">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2022/07/18/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-07-18T22:28:25+08:00">
-                2022-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+  </nav>
+
 
 
           </div>
@@ -1955,7 +2001,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1977,7 +2023,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
